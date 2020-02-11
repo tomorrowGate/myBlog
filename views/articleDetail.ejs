@@ -1,0 +1,195 @@
+<%- include("part/header",{title:"刘贤杰的个人博客",css:["index"],js:["part/title"],layui:true})%>
+<link rel="stylesheet" href="/css/articledetail.css">
+<%- include("part/canvas")%>
+<div id="wrap" class="wrap ">
+    <div class="content">
+        <h2><%=data.title%></h2><!-- 标题 -->
+        <div class="article-note">
+            <span class="article-node-one">
+                <i class="layui-icon layui-icon-time" style="font-size: 12px; color: #1E9FFF;"></i>
+                <span><%=data.date%></span>
+            </span>
+            <span class="article-node-one">
+                <i class="layui-icon layui-icon-note" style="font-size: 12px; color: #1E9FFF;"></i>
+                <% data.tags&&data.tags.split(',').forEach(function(item){%>
+                    <a href="" style="color:#009688"><%=item %></a>
+                <% }) %>
+            </span><span class="article-node-one">
+                <i class="layui-icon layui-icon-fire" style="font-size: 12px; color: #1E9FFF;"></i>
+                <span>观看次数：<%=data.readNum||0%></span>
+            </span><span class="article-node-one">
+                <i class="layui-icon layui-icon-dialogue" style="font-size: 12px; color: #1E9FFF;"></i>
+                <span>评论：<%=data.commentsNum||0%></span>
+            </span>
+        </div>
+        <article>
+            <%-data.content||"暂无文章信息"%>
+        </article>
+
+        <hr class=" cutline">
+        <!--  <hr class="layui-bg-black cutline"> -->
+
+        <div class="article-remarks">
+            码海无涯，不进则退，日积跬步，以至千里。本博客所写内容仅为个人在学习和研究过程中的一些心得体会及总结笔记，仅代表个人观点。
+        </div>
+
+        <blockquote class="layui-elem-quote">
+            <div class="article-quote-key">本文作者：<span class="quote-val"><%=data.author&&data.author.username||"游客"%></span></div>
+            <div class="article-quote-key">本文链接：<a href="<%=data.articleurl%>" class="quote-val article-url"><%=data.articleurl%></a></div>
+            <div class="article-quote-key">转载请注明出处！</div>
+        </blockquote>
+
+        <!-- 前一篇，后一篇 -->
+        <div class="article-other-art layui-row">
+            <div class="article-before-art layui-col-md6">
+                <i class="layui-icon layui-icon-left" style="font-size: 15px; "></i>
+                <span class="">前一篇</span>
+            </div>
+            <div class="article-after-art layui-col-md6">
+                <span class="">后一篇</span>
+                <i class="layui-icon layui-icon-right" style="font-size: 15px; ;"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 已经存在的评论 -->
+    <div class="comments">
+        <h3 class="comments-title">
+            <%if(commentData.length){%>
+            <span class=""> <%commentData.length%></span>
+            <%}%>
+            评论
+        </h3>
+        <ul class="comments-list">
+            <%commentData.forEach(v=>{%>
+            <li class="comments-item layui-row layui-col-space10">
+                <div class="comments-user-head layui-col-md1">
+                    <img src="/photo/<%=v.author.userInfo.photo%>" alt="default" class="">
+                </div>
+                <div class="comments-con layui-col-md10">
+                    <div class="comments-top">
+                        <span class="comments-username"><%=v.author.username%></span>
+                        <span class="comments-comtime"><%=v.date%></span>
+                    </div>
+                    <div class="comments-user-content"><%=v.content%></div>
+                </div>
+                <div class="comments-re layui-col-md1">
+                    <a class="comment-replay" href="javascript:;">回复</a>
+                </div>
+
+                <div class="comment-hide hide">
+
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item layui-form-text">
+                            <div class="layui-input-block" style="margin-left: 0">
+                                <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block hide-com-btn" style="margin-left: 0">
+                                <button class="layui-btn" lay-submit lay-filter="add">回复</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </li>
+            <%});%>
+        </ul>
+    </div>
+
+    <div class="article-comment">
+        <div class="layui-form-item layui-row">
+            <div class="layui-col-md6">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-inline">
+                    <input name="password" autocomplete="off" class="layui-input">
+                </div>
+                <!-- <div class="layui-form-mid layui-word-aux">辅助文字</div> -->
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="email" name="password" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+
+        <form class="layui-form" action="">
+            <div class="layui-form-item layui-form-text">
+                <div class="layui-input-block" style="margin-left: 0">
+                    <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block" style="margin-left: 0">
+                    <button class="layui-btn" lay-submit lay-filter="add">立即发表</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</div> <!--引入layui的模块代码-->
+<script src="/js/index-layui.js"></script>
+<!--当前页面的模块代码-->
+<script>
+
+    var articleId = location.href.match(/[\da-z]+$/ig)[0];
+    //Demo
+    layui.use('form', function(){
+
+
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(add)', function(data){
+            var postData = {
+                desc : data.field.desc
+                ,articleId
+            }
+            $.ajax({
+                method : "POST"
+                ,url : "/comment"
+                ,data:postData
+                ,success:function(data){
+                    if ( data.code === 1 ){
+                        layer.alert(data.msg,function(){
+                            location.reload();
+                        });
+                    } else{
+                        layer.alert(data.msg,function(){
+                            layer.close(layer.index);
+                        });
+                    }
+                }
+            })
+
+            return false;
+        });
+    });
+
+    (function(){
+        var $articleurl = $(".article-url")
+        var $articleurlLen = $(".article-url").text()
+        if(!$articleurlLen.length){
+            $articleurl.text(location.href)
+        }
+    })();
+
+     //回复按钮的点击
+     (function(){
+        var $reply = $(".comments-list .comments-item .comments-re");
+        var $hideCom = $(".comments-list .comments-item .comment-hide .hide-com-btn")
+        $reply.click(function(){
+            var $content = $(this).siblings(".comment-hide");
+            $content.toggle()
+            /*  $content.find(".show").toggle();
+            $content.find(".hide").toggle(); */
+        });
+        $hideCom.click(function(){
+            var $hideContent = $(this).parents(".comment-hide");
+            $hideContent.hide()
+        });
+    })();
+</script>

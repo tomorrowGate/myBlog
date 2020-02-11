@@ -1,0 +1,241 @@
+html {
+    font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, Helvetica Neue, Helvetica, Arial, sans-serif;
+    ;
+}
+
+html,body,header,section,footer,div,ul,ol,li,img,a,span,em,del,
+legend,center,strong,var,fieldset,form,label,dl,dt,dd,cite,input,
+hr,time,mark,code,figcaption,figure,textarea,h1,h2,h3,h4,h5,h6,p {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-style: normal;
+}
+
+html,
+body {
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-user-select: none;
+    background-color: #fff;
+    font-size: 13.3333333vw ;
+}
+
+body{
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+nav,article,aside,details,main,header,footer,section,
+fieldset,figcaption,figure {
+    display: block;
+}
+
+img,a,button,em,del,strong,var,label,cite,small,time,mark,
+code,textarea {
+    display: inline-block;
+}
+
+header,section,footer {
+    position: relative;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+input,button,textarea {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    line-height: 1em;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+input,
+textarea {
+    outline: none;
+    -webkit-appearance: none;
+}
+
+span {
+    display: inline-block;
+}
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+label,
+.wordWrap {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td,
+th {
+    padding: 0;
+}
+
+.clearfix:after {
+    content: ' ';
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.loading_more {
+    display: block;
+    height:0.5rem;
+    line-height: 0.5rem;
+    width: 100%;
+    padding-top: 0.2rem;
+    text-align: center;
+    font-size: 0.28rem;
+    color: #bbb;
+    border-top:1px solid #ddd;
+}
+
+.loading_more::after {
+    content: '加载更多...';
+}
+
+.load-over{
+    display: block;
+    height:0.5rem;
+    line-height: 0.5rem;
+    width: 100%;
+    padding-top: 0.2rem;
+    text-align: center;
+    font-size: 0.28rem;
+    color: #bbb;
+    border-top:1px solid #ddd
+}
+.load-over::after {
+    content: '没有更多了';
+}
+
+.text-over{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 适配iphonex */
+header{
+    background-color: #f2f2f2;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index: 999;
+}
+@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+    div {
+      margin-bottom: constant(safe-area-inset-bottom);
+      margin-bottom: env(safe-area-inset-bottom);
+    }
+}
+header .placeholder{
+    height: 44px;
+    line-height: 44px;
+    font-size: 0.32rem;
+    font-weight: bold;
+    text-align: center;
+}
+main {
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-bottom: 60px;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+   /*  height: calc(88px + constant(safe-area-inset-bottom));
+    height: calc(88px + env(safe-area-inset-bottom)); */
+    padding-top: 0.1rem;
+    background: #f2f2f2;
+}
+footer .foot{
+    display: flex;
+    justify-content: space-around;
+    height: 44px;
+    font-size: 0.28rem;
+}
+
+.good-list{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0.1rem;
+    font-size: 0.28rem;
+}
+.good-list-item{
+    width: 3.6rem;
+    margin-bottom: 0.1rem;
+}
+.good-list-item:nth-last-of-type(2n+1){
+    margin-left: 0.1rem;
+}
+.good-list-item .imgbox img{
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 0.08rem;
+    object-fit: cover;
+}
+.list-item-caption{
+    padding: 0.05rem 0.1rem;
+}
+.caption-title{
+    font-weight: bold;
+}
+.caption-bottom{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.1rem;
+}
+.caption-bottom-text{
+    color: #777;
+    font-size: 0.26rem;
+}
+.caption-bottom-price{
+    color: #fe5d61;
+    font-size: 0.30rem;
+    font-weight: bold;
+}
+
+.foot .paging{
+    padding: 0 0.2rem;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    border: 1px solid #777;
+    border-radius: 0.06rem;
+}
+.foot .paging-active{
+    padding: 0 0.2rem;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    background: #6eacdf;
+    color: #fff;
+}

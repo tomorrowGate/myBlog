@@ -1,0 +1,89 @@
+.wrap {
+  font-size: 16px;
+}
+.content {
+  width: 1200px;
+  padding: 30px;
+  margin: 50px auto;
+  color: #555;
+  background: #fff;
+  box-shadow: 0 0 2px #ccc;
+}
+.content h2 {
+  font-weight: 800;
+  margin: initial;
+  text-align: center;
+  font-size: 34px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+.content .article-note {
+  text-align: center;
+  margin: 10px ;
+}
+.content .article-note .article-node-one {
+  margin: 0 10px ;
+}
+.content article {
+  margin: 30px 0;
+}
+.content .cutline,
+.content .article-remarks {
+  margin-bottom: 30px;
+}
+.content .layui-elem-quote {
+  font-weight: bold;
+}
+.content .layui-elem-quote .quote-val {
+  font-weight: normal;
+}
+.content .layui-elem-quote .article-url {
+  color: #29a79b;
+}
+.content .article-other-art {
+  margin-top: 30px;
+}
+.content .article-other-art .article-after-art {
+  text-align: end;
+}
+.comments,
+.article-comment {
+  width: 1200px;
+  padding: 30px;
+  margin: 20px auto 10px;
+  color: #555;
+  background: #fff;
+  box-shadow: 0 0 2px #ccc;
+}
+.comments .comments-title {
+  font-size: 26px;
+  font-weight: bold;
+}
+.comments .comments-list .comments-item + .comments-item {
+  border-top: 1px solid #ddd;
+}
+.comments .comments-list .comments-item {
+  margin: 20px 0;
+}
+.comments .comments-list .comments-item .comments-user-head img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.comments .comments-list .comments-item .comments-con .comments-top {
+  margin-bottom: 6px;
+}
+.comments .comments-list .comments-item .comments-con .comments-top .comments-username {
+  color: #29a79b;
+}
+.comments .comments-list .comments-item .comments-con .comments-user-content {
+  padding: 10px;
+  background: #f2f2f2;
+}
+.comments .comments-list .comments-item .comments-re {
+  text-align: right;
+}
+.hide {
+  display: none;
+}

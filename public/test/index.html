@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0, viewport-fit=cover" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link rel="stylesheet" type="text/css" href="http://diepu.fun/test/index.css" />
+</head>
+
+<body>
+    <header>
+        <div class="placeholder">物品展示</div>
+    </header>
+    <main>
+        <ul class="good-list">
+           
+        </ul>
+        <div class="loading_more good-list-bottom"></div>
+    </main>
+    <footer> 
+        
+    </footer>
+</body>
+<script type="text/javascript">
+        let isFirst = true
+        let currentPage = 1
+        let pageTotal = 0
+        let goTo = cacheData()
+
+        getData()
+        function getData(page=1){
+            fetch(' http://47.95.148.78/neckpets/getBlindBoxSeriesLitByTabType.json', {
+                method: 'POST',
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `requestData={"userToken":"8ed7ddfde5ca37849b7c43591957d7fb73adc2a1","pageNumber": "${page}"}}`
+            })
+            .then(res=>res.json())
+            .then(res=>{
+                //console.log(res)
+                if(isFirst){
+                    pageTotal = Math.ceil(res.total/res.data.length)
+                    isFirst = false
+                }
+                goTo.set(page,res.data)
+                renderData(res.data)
+            })
+            .catch(err=>console.log(err))
+        
+        }
+
+        function cacheData(){
+            let cache = {total:[]}
+            let cacheList = []
+            return {
+                //存数据
+                set:function(page,data){
+                    cache[page] = data
+                },
+                //读数据
+                get:function(page){
+                    if(page in cache){
+                        renderData(cache[page])
+                        //console.log(`第${page}页数据已经缓存`)
+                    }else{
+                        getData(page)
+                    }
+                    return cache[page]
+                }
+            }
+        }
+
+        function renderData(data){
+            let str = ''
+            data.forEach((v,i)=>{
+                str += `<li class="good-list-item">
+                            <div class="imgbox">
+                                <img src="${v.image}" alt="${v.name}">
+                            </div>
+                            <div class="list-item-caption">
+                                <p class="caption-title text-over">${v.name}</p>
+                                <div class="caption-bottom"> 
+                                    <span class="caption-bottom-text">${v.description}</span>
+                                    <span class="caption-bottom-price">&yen;${v.price}</span>
+                                </div>
+                            </div>
+                        </li>`
+            })
+            document.getElementsByClassName("good-list")[0].innerHTML+=str
+            
+            if(currentPage>=pageTotal){
+                document.getElementsByClassName("good-list-bottom")[0].classList.remove("loading_more")
+                document.getElementsByClassName("good-list-bottom")[0].classList.add("load-over")
+            }
+        }
+        
+        function throttle(func, wait, mustRun) {
+            var timeout,
+                startTime = new Date();
+
+            return function() {
+                var context = this,
+                    args = arguments,
+                    curTime = new Date();
+                clearTimeout(timeout);
+                // 如果达到了规定的触发时间间隔，触发 handler
+                if (curTime - startTime >= mustRun) {
+                    func.apply(context, args);
+                    startTime = curTime;
+                    // 没达到触发间隔，重新设定定时器
+                } else {
+                    timeout = setTimeout(func, wait);
+                }
+            };
+        };
+
+        function calcBottom(){
+            let scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+            let windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+            let scrollHeight = document.documentElement.scrollHeight||document.body.scrollHeight;
+           
+            if(scrollTop+windowHeight>=scrollHeight-60 && currentPage<pageTotal){
+                goTo.get(++currentPage)
+                console.log(currentPage)
+            }
+            
+        }
+
+        let scrollFun = throttle(calcBottom, 500, 1000)
+        window.addEventListener("scroll",(e)=>{
+            scrollFun()
+        })
+</script>
+
+</html>
