@@ -11,6 +11,7 @@ let articleSchema = new Schema({
     ,author : {type:Schema.Types.ObjectId,ref:"user"}
     ,readNum:{type:Number}
     ,commentsNum:{type:Number}
+    ,articleurl:{type:String}
 });
 
 module.exports = mongoose.model("article",articleSchema);

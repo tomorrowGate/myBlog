@@ -38,10 +38,13 @@
   font-weight: normal;
 }
 .content .layui-elem-quote .article-url {
-  color: #29a79b;
+  color: #01AAED;
 }
 .content .article-other-art {
   margin-top: 30px;
+}
+.content .article-other-art .page-link {
+  color: #01AAED;
 }
 .content .article-other-art .article-after-art {
   text-align: end;

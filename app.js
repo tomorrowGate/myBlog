@@ -74,6 +74,8 @@ app.use("/article",require("./routers/article"));
 app.post("/delete",require("./routers/delete"));
 //文章查找
 app.post("/search",require("./routers/search"));
+//标签查找
+app.use("/tags",require("./routers/tag"))
 //评论添加与删除
 app.use("/comment",require("./routers/comment"));
 //上传路由

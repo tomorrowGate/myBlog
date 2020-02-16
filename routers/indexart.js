@@ -10,6 +10,7 @@ module.exports = function(req,res){
     article.find()
     .then(data=>{
         if ( data ){
+            //console.log(data)
             res.render("index",{code:1,data});
         } else{
             res.render("index",{code:0,msg:"没有对应的文章",data:[]});
